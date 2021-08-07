@@ -1,6 +1,6 @@
 # iron-pocket
 
-El objetivo es construir una aplicación parecida a [pocket](https://getpocket.com). Esta aplicación nos va permitir guardar enlaces de interés y automágicamente sacará información relevante del enlace para mostrarla en nuestro panel.
+El objetivo es construir una aplicación parecida a [pocket](https://getpocket.com). Esta aplicación nos va a permitir guardar enlaces de interés y automágicamente sacará información relevante del enlace para mostrarla en nuestro panel.
 
 
 El proyecto tiene 2 partes:
@@ -37,7 +37,7 @@ Antes de empezar a trabajar en el CRUD necesitamos tener algo de información en
 
 En `data/links.json` tenemos los links que queremos que terminen en base de datos. Estos links sólo contienen la URL, es lo único que necesitamos conocer, para calcular el resto de la información del modelo vamos a usar la librería [url-metadata](https://www.npmjs.com/package/url-metadata). No nos quedaremos con toda la información, sólo nos interesa: `title`, `description`, `image`.
 
-El reto a completar en este fichero es el guardado de los links en base de datos!
+¡El reto a completar en este fichero es el guardado de los links en base de datos!
 
 ## Iteración 3: API CRUD
 
@@ -67,7 +67,7 @@ Todos los campos del modelo podrán ser editados **menos** la `url`.
 
 Una vez tengamos **bien probada** la API es hora de ponerse manos a la obra con la web.
 
-Necesitaremos los siguientes componentes, este será el orden de implentación:
+Necesitaremos los siguientes componentes, este será el orden de implementación:
 - Header: link a la vista de todos los enlaces
 - Footer
 - links:

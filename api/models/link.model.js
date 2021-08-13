@@ -14,10 +14,36 @@ const Schema = mongoose.Schema;
 const linkSchema = new Schema(
   {
     // TODO: model attributes validations
+    url:{
+      type: String,
+      required: 'Url is required'
+    },
+    title: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    img:{
+      type: String,
+    },
+    keywords:{
+      type: [String],
+      default: ''
+    }
   },
   {
     timestamps: true,
     // TODO: toJSON transformation
+    toJSON: {
+      virtuals: true,
+      transform: function(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        return ret;
+        
+      }
+    }
   }
 )
 

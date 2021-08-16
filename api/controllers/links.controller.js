@@ -3,7 +3,14 @@ const urlMetadata = require('url-metadata');
 const Link = require('../models/link.model');
 
 //** TODO: Links CRUD actions: list, detail, create, update */
-
+module.exports.list = (req, res, next) => {
+  Link.find()
+  .then(links => res.json(links))
+  .catch(next);
+}
+module.exports.detail = (req, res, next) => {
+  res.json(req.link);
+}
 
 module.exports.create = (req, res, next) => {
 
@@ -14,7 +21,7 @@ module.exports.create = (req, res, next) => {
   // Please don't freak out with documentation! it's just a promise!: urlMetadata(url).then(metadata => {}).catch(error => next(error))
 
 
-  const url; // TODO: get the link url from request
+  //const url; // TODO: get the link url from request
   // We need validate the URL before use it at urlMetadata, we can use mongoose model validation 
   // and select the only field/fields that we need to validate (url in this case):
   // https://mongoosejs.com/docs/api.html#document_Document-validate

@@ -10,13 +10,15 @@ const Schema = mongoose.Schema;
   | image       | String   |                          |
   | keywords    | [String] | default empty            |
  */
+  const URL_PATTERN = /^(ftp|http|https):\/\/[^ "]+$/;
 
-const linkSchema = new Schema(
+  const linkSchema = new Schema(
   {
     // TODO: model attributes validations
     url:{
       type: String,
-      required: 'Url is required'
+      required: 'Url is required',
+      match: [URL_PATTERN, 'Url not valid']
     },
     title: {
       type: String,

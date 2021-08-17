@@ -5,5 +5,9 @@ const links = require('../controllers/links.controller');
 
 router.get('/links',links.list);
 router.get('/links/:id',links.detail);
+router.post('/links', links.create);
+router.put('/links/:id',links.edit);
+router.delete('/links/:id',links.delete);
+
 
 module.exports = router;

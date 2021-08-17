@@ -25,11 +25,38 @@ module.exports.create = (req, res, next) => {
   // We need validate the URL before use it at urlMetadata, we can use mongoose model validation 
   // and select the only field/fields that we need to validate (url in this case):
   // https://mongoosejs.com/docs/api.html#document_Document-validate
-  
+  link = {url} = req.body
   new Link({ url }).validate('url')
     .then(() => urlMetadata(url))
     .then(metadata => {
         // Create link's json and store at the database
+        link.title = metadata.title;
+        link.image = metadata.image;
+        link.description =metadata.description;
+        link.keywords = metadata.keywords;
+        return Link.create(link)
+    })
+    .then((link) => {
+      if(link){
+        res.status(201).json(link)
+      }else{
+        createError(error)
+      }
     })
     .catch(error => next(error))
+}
+
+module.exports.edit = (req, res, next) => {
+  const data = { url,title,description, image, keywords} = req.body;
+  const link = req.link;
+  Object.assign(link, data);
+  link.save()
+  .then(link => res.json(link))
+  .catch(error => next(error))
+}
+
+module.exports.delete = (req, res, next) => {
+  Link.deleteOne({_id: req.link.id})
+  .then(()=> res.status(204).send())
+  .catch(next)
 }

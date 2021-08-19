@@ -41,6 +41,7 @@ const Schema = mongoose.Schema;
       virtuals: true,
       transform: function(doc, ret) {
         ret.id = ret._id;
+        delete ret.__v;
         delete ret._id;
         return ret;
         
